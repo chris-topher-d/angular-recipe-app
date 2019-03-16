@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -13,8 +14,9 @@ export class ShoppingEditComponent implements OnInit {
   ngOnInit() {
   }
 
-  onAddIngredient(name, amount) {
-    const ingredient = new Ingredient(name, amount);
+  onAddIngredient(form: NgForm) {
+    const value = form.value;
+    const ingredient = new Ingredient(value.name, value.amount);
     this.shoppingListService.addIngredient(ingredient);
   }
 }
